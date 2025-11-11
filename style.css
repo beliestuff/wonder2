@@ -46,8 +46,8 @@ button:hover {
 }
 
 .card {
-  width: 150px;
-  height: 220px;
+  width: 750px;
+  height: 1050px;
   perspective: 1000px;
 }
 
