@@ -1,0 +1,5 @@
+[
+  { "name": "Dragon", "image": "images/dragon.png", "rarity": "Legendary", "weight": 1 },
+  { "name": "Wizard", "image": "images/wizard.png", "rarity": "Rare", "weight": 5 },
+  { "name": "Knight", "image": "images/knight.png", "rarity": "Common", "weight": 20 }
+]
