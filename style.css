@@ -46,7 +46,7 @@ button:hover {
 }
 
 .card {
-  width: 750px;           /* increase width */
+  width: 350px;           /* increase width */
   height: auto;           /* let height flow */
   border-radius: 15px;    /* rounded corners */
   overflow: hidden;       /* if there’s an image inside you want it clipped nicely */
