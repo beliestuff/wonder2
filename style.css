@@ -46,12 +46,9 @@ button:hover {
 }
 
 .card {
-  width: 350px;           /* increase width */
-  height: auto;           /* let height flow */
-  border-radius: 15px;    /* rounded corners */
-  overflow: hidden;       /* if there’s an image inside you want it clipped nicely */
-  /* maybe add box-shadow for “raised card” effect */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 250px;
+  height: 550px;
+  perspective: 1000px;
 }
 
 .card-inner {
