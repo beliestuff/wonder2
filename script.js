@@ -6,7 +6,7 @@ function logError(msg, err) {
 // Load cards.json
 async function loadCards() {
   try {
-    const res = await fetch("cards.json");
+    const res = await fetch("./cards.json"); // Make sure path is correct
     if (!res.ok) throw new Error(`Failed to fetch cards.json: ${res.status} ${res.statusText}`);
     return await res.json();
   } catch (e) {
@@ -26,11 +26,15 @@ function weightedRandom(cards) {
   return null;
 }
 
+// Updated rarityClass to match your tiers
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().toLowerCase();
-  if (r.includes("legend")) return "legendary";
+  if (r.includes("hr")) return "hr";
+  if (r.includes("sir")) return "sir";
+  if (r.includes("ultra")) return "ultra";
   if (r.includes("rare")) return "rare";
+  if (r.includes("common")) return "common";
   return "common";
 }
 
@@ -43,7 +47,7 @@ async function setup() {
   }
 
   const drawOneBtn = document.getElementById("draw-one");
-  const drawTenBtn = document.getElementById("draw-ten");
+  const drawTenBtn = document.getElementById("draw-ten"); // optional button
   const resultsDiv = document.getElementById("results");
 
   function renderDrawn(drawn) {
@@ -51,11 +55,15 @@ async function setup() {
     drawn.forEach((card, i) => {
       const cardDiv = document.createElement("div");
       cardDiv.className = `card ${rarityClass(card.rarity)}`;
+
+      // Pick a random image from card.images array
+      const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
+
       cardDiv.innerHTML = `
         <div class="card-inner">
           <div class="card-front"></div>
           <div class="card-back">
-            <img src="${card.image}" alt="${card.name}" />
+            <img src="${randomImage}" alt="${card.name}" />
             <h2>${card.name}</h2>
             <p>${card.rarity || ""}</p>
           </div>
@@ -74,17 +82,19 @@ async function setup() {
     renderDrawn([c]);
   });
 
-  drawTenBtn.addEventListener("click", () => {
-    const drawn = [];
-    for (let i = 0; i < 10; i++) {
-      const c = weightedRandom(cards);
-      if (c) drawn.push(c);
-    }
-    renderDrawn(drawn);
-  });
+  if (drawTenBtn) { // Optional: draw 10 button
+    drawTenBtn.addEventListener("click", () => {
+      const drawn = [];
+      for (let i = 0; i < 10; i++) {
+        const c = weightedRandom(cards);
+        if (c) drawn.push(c);
+      }
+      renderDrawn(drawn);
+    });
+  }
 
   console.log("Card Draw setup complete. Cards loaded:", cards.length);
 }
 
-// Run setup after DOM content (defer + this is safe)
+// Run setup after DOM content
 setup().catch(e => logError("Setup failed", e));
