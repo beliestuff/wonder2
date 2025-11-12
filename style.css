@@ -2,8 +2,8 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #3b2a4f, #22162b);
-  color: #eee;
+  background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
+  color: #fff;
   text-align: center;
   min-height: 100vh;
   display: flex;
@@ -13,34 +13,34 @@ body {
   overflow: hidden;
 }
 
-/* Subtle sparkles background */
+/* Cute sparkles background */
 body::before {
   content: '';
   position: absolute;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
   top: -50%;
   left: -50%;
-  animation: sparkle 25s linear infinite;
+  animation: sparkle 20s linear infinite;
   z-index: 0;
 }
 
 @keyframes sparkle {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg) translate(0,0); }
+  100% { transform: rotate(360deg) translate(0,0); }
 }
 
 .container {
   position: relative;
   z-index: 1;
   max-width: 800px;
-  background: rgba(30, 20, 40, 0.6);
+  background: rgba(255, 255, 255, 0.15);
   padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 0 25px rgba(200, 150, 255, 0.15);
-  backdrop-filter: blur(8px);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
 }
 
 .buttons {
@@ -48,22 +48,22 @@ body::before {
 }
 
 button {
-  background: linear-gradient(145deg, #7b4db3, #5a2d82);
-  color: #fff;
+  background: linear-gradient(145deg, #ff7eb9, #ff65a3);
+  color: white;
   border: none;
   padding: 14px 28px;
-  border-radius: 18px;
+  border-radius: 20px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   margin: 0 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 5px 15px rgba(120, 70, 180, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
 }
 
 button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(150, 100, 230, 0.4);
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6);
 }
 
 .results {
@@ -97,58 +97,52 @@ button:hover {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 20px;
+  border-radius: 25px;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #2a1f3b;
+  background: #fff0;
   border: none;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.card-front img,
-.card-back img {
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-back img,
+.card-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 25px;
   display: block;
 }
 
-/* Pokémon card back image */
-.card-back {
-  transform: rotateY(180deg);
-  background: #1e1a2a;
-}
-
-.card-back img {
-  content: url('https://archives.bulbagarden.net/media/upload/3/3f/Pok%C3%A9mon_TCG_cardback.jpg'); /* Replace with your preferred image */
-}
-
-/* Hide text on cards */
 .card h2,
 .card p {
   display: none !important;
 }
 
-/* Glow by rarity (subtle now) */
+/* Cute glow for rarities */
 .card.hr {
-  box-shadow: 0 0 15px 4px #ffadad88;
+  box-shadow: 0 0 20px 6px #ffadad;
 }
 
 .card.sir {
-  box-shadow: 0 0 14px 3px #ffd6a588;
+  box-shadow: 0 0 18px 5px #ffd6a5;
 }
 
 .card.ultra {
-  box-shadow: 0 0 15px 5px #fdffb688;
+  box-shadow: 0 0 16px 4px #fdffb6;
 }
 
 .card.rare {
-  box-shadow: 0 0 12px 3px #a0c4ff66;
+  box-shadow: 0 0 15px 3px #a0c4ff;
 }
 
 .card.common {
-  box-shadow: 0 0 8px 2px #bdb2ff66;
+  box-shadow: 0 0 10px 2px #bdb2ff;
 }
