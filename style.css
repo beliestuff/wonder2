@@ -96,7 +96,7 @@ button:hover {
   font-size: 22px;
   line-height: 1.4;
   pointer-events: none;
-  animation: sparkleFloat 3.5s ease-in-out infinite;
+  animation: sparkleFloat 3.5s ease-in-out fordwards;
   color: transparent;
   background: linear-gradient(120deg, #ff8ce7 0%, #b89fff 50%, #ffbdf5 100%);
   -webkit-background-clip: text;
