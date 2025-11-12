@@ -1,29 +1,77 @@
-{
-  "prizes": [
-    {
-      "name": "Prize 1",
-      "chance": 3,
-      "folder": "prizes/prize1"
-    },
-    {
-      "name": "Prize 2",
-      "chance": 10,
-      "folder": "prizes/prize2"
-    },
-    {
-      "name": "Prize 3",
-      "chance": 17,
-      "folder": "prizes/prize3"
-    },
-    {
-      "name": "Prize 4",
-      "chance": 25,
-      "folder": "prizes/prize4"
-    },
-    {
-      "name": "Prize 5",
-      "chance": 45,
-      "folder": "prizes/prize5"
-    }
-  ]
-}
+[
+  {
+    "name": "HR",
+    "weight": 3,
+    "rarity": "HR",
+    "images": [
+      "prizes/HR/1.png",
+      "prizes/HR/2.png",
+      "prizes/HR/3.png",
+      "prizes/HR/4.png",
+      "prizes/HR/5.png",
+      "prizes/HR/6.png",
+      "prizes/HR/7.png",
+      "prizes/HR/8.png"
+    ]
+  },
+  {
+    "name": "SIR",
+    "weight": 10,
+    "rarity": "SIR",
+    "images": [
+      "prizes/SIR/1.png",
+      "prizes/SIR/2.png",
+      "prizes/SIR/3.png",
+      "prizes/SIR/4.png",
+      "prizes/SIR/5.png",
+      "prizes/SIR/6.png",
+      "prizes/SIR/7.png",
+      "prizes/SIR/8.png"
+    ]
+  },
+  {
+    "name": "Ultra Rare",
+    "weight": 17,
+    "rarity": "Ultra Rare",
+    "images": [
+      "prizes/UltraRare/1.png",
+      "prizes/UltraRare/2.png",
+      "prizes/UltraRare/3.png",
+      "prizes/UltraRare/4.png",
+      "prizes/UltraRare/5.png",
+      "prizes/UltraRare/6.png",
+      "prizes/UltraRare/7.png",
+      "prizes/UltraRare/8.png"
+    ]
+  },
+  {
+    "name": "Rare",
+    "weight": 25,
+    "rarity": "Rare",
+    "images": [
+      "prizes/Rare/1.png",
+      "prizes/Rare/2.png",
+      "prizes/Rare/3.png",
+      "prizes/Rare/4.png",
+      "prizes/Rare/5.png",
+      "prizes/Rare/6.png",
+      "prizes/Rare/7.png",
+      "prizes/Rare/8.png"
+    ]
+  },
+  {
+    "name": "Common",
+    "weight": 45,
+    "rarity": "Common",
+    "images": [
+      "prizes/Common/1.png",
+      "prizes/Common/2.png",
+      "prizes/Common/3.png",
+      "prizes/Common/4.png",
+      "prizes/Common/5.png",
+      "prizes/Common/6.png",
+      "prizes/Common/7.png",
+      "prizes/Common/8.png"
+    ]
+  }
+]
