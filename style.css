@@ -13,7 +13,6 @@ body {
   overflow: hidden;
 }
 
-/* Subtle rotating sparkle grid background */
 body::before {
   content: '';
   position: absolute;
@@ -27,10 +26,7 @@ body::before {
   z-index: 0;
 }
 
-@keyframes sparkleBG {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+@keyframes sparkleBG { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 .container {
   position: relative;
@@ -81,10 +77,10 @@ button:hover {
   overflow: visible;
 }
 
-/* ✨ Base sparkle animation (stars & hearts) */
-.card.hr::before,
+/* Base sparkle animation */
 .card.sir::before,
-.card.ultra::before {
+.card.sfa::before,
+.card.sur::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -92,10 +88,6 @@ button:hover {
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 22px;
-  line-height: 1.4;
-  pointer-events: none; /* prevent glow from blocking clicks */
   animation: sparkleFloat 3.5s ease-in-out infinite;
   color: transparent;
   background: linear-gradient(120deg, #ff8ce7 0%, #b89fff 50%, #ffbdf5 100%);
@@ -105,31 +97,15 @@ button:hover {
   z-index: 3;
 }
 
-/* floating / twinkling animation */
 @keyframes sparkleFloat {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
-  }
-  25% {
-    opacity: 1;
-    transform: translate(-50%, -60%) scale(1.1) rotate(10deg);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translate(-50%, -70%) scale(1) rotate(-10deg);
-  }
-  75% {
-    opacity: 1;
-    transform: translate(-50%, -60%) scale(1.05) rotate(8deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -90%) scale(1.2) rotate(20deg);
-  }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8) rotate(0deg); }
+  25% { opacity: 1; transform: translate(-50%, -60%) scale(1.1) rotate(10deg); }
+  50% { opacity: 0.8; transform: translate(-50%, -70%) scale(1) rotate(-10deg); }
+  75% { opacity: 1; transform: translate(-50%, -60%) scale(1.05) rotate(8deg); }
+  100% { opacity: 0; transform: translate(-50%, -90%) scale(1.2) rotate(20deg); }
 }
 
-//* 🌟 Radiant glow only for tiers with glow */
+/* Glow for specific tiers */
 .card.sir::after,
 .card.sfa::after,
 .card.sur::after {
@@ -140,28 +116,14 @@ button:hover {
   filter: blur(50px);
   opacity: 0.75;
   animation: pulseGlow 3.5s ease-in-out infinite;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
-/* Light purple glow (SIR) */
-.card.sir::after {
-  background: radial-gradient(circle, rgba(180,150,255,0.8) 0%, rgba(150,120,255,0.3) 60%, transparent 80%);
-}
+.card.sir::after { background: radial-gradient(circle, rgba(180,150,255,0.8) 0%, rgba(150,120,255,0.3) 60%, transparent 80%); }
+.card.sfa::after { background: radial-gradient(circle, rgba(120,160,255,0.8) 0%, rgba(80,120,255,0.3) 60%, transparent 80%); }
+.card.sur::after { background: radial-gradient(circle, rgba(255,100,180,0.8) 0%, rgba(255,50,150,0.3) 60%, transparent 80%); }
 
-/* Blue glow (SFA) */
-.card.sfa::after {
-  background: radial-gradient(circle, rgba(120,160,255,0.8) 0%, rgba(80,120,255,0.3) 60%, transparent 80%);
-}
-
-/* Pink glow (SUR) */
-.card.sur::after {
-  background: radial-gradient(circle, rgba(255,100,180,0.8) 0%, rgba(255,50,150,0.3) 60%, transparent 80%);
-}
-
-
-
-/* gentle pulse animation for the glow */
 @keyframes pulseGlow {
   0% { transform: scale(1); opacity: 0.7; }
   50% { transform: scale(1.1); opacity: 1; }
@@ -174,12 +136,10 @@ button:hover {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  z-index: 2; /* keep card above glow */
+  z-index: 2;
 }
 
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
+.card.flipped .card-inner { transform: rotateY(180deg); }
 
 .card-front,
 .card-back {
@@ -198,9 +158,7 @@ button:hover {
   box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
-.card-back {
-  transform: rotateY(180deg);
-}
+.card-back { transform: rotateY(180deg); }
 
 .card-back img,
 .card-front img {
@@ -212,6 +170,4 @@ button:hover {
 }
 
 .card h2,
-.card p {
-  display: none !important;
-}
+.card p { display: none !important; }
