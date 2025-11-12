@@ -3,30 +3,30 @@
     "name": "HR",
     "weight": 3,
     "rarity": "HR",
-    "images": ["prizes/HR/a.png","prizes/HR/b.png","prizes/HR/c.png","prizes/HR/d.png","prizes/HR/e.png","prizes/HR/f.png","prizes/HR/g.png","prizes/HR/h.png"]
+    "images": ["prizes/HR/a.png","prizes/HR/a1.png","prizes/HR/a2.png","prizes/HR/a3.png","prizes/HR/a4.png","prizes/HR/a5.png","prizes/HR/a6.png","prizes/HR/a7.png"]
   },
   {
     "name": "SIR",
     "weight": 10,
     "rarity": "SIR",
-    "images": ["prizes/SIR/i.png","prizes/SIR/j.png","prizes/SIR/k.png","prizes/SIR/l.png","prizes/SIR/m.png","prizes/SIR/n.png","prizes/SIR/o.png","prizes/SIR/p.png"]
+    "images": ["prizes/SIR/a8.png","prizes/SIR/a9.png","prizes/SIR/a10.png","prizes/SIR/a11.png","prizes/SIR/a12.png","prizes/SIR/a13.png","prizes/SIR/a14.png","prizes/SIR/a15.png"]
   },
   {
     "name": "Ultra Rare",
     "weight": 17,
     "rarity": "Ultra Rare",
-    "images": ["prizes/UltraRare/q.png","prizes/UltraRare/r.png","prizes/UltraRare/s.png","prizes/UltraRare/t.png","prizes/UltraRare/u.png","prizes/UltraRare/v.png","prizes/UltraRare/w.png","prizes/UltraRare/x.png"]
+    "images": ["prizes/UltraRare/a16.png","prizes/UltraRare/a17.png","prizes/UltraRare/a18.png","prizes/UltraRare/a19.png","prizes/UltraRare/a20.png","prizes/UltraRare/a21.png","prizes/UltraRare/a22.png","prizes/UltraRare/a23.png"]
   },
   {
     "name": "Rare",
     "weight": 25,
     "rarity": "Rare",
-    "images": ["prizes/Rare/y.png","prizes/Rare/z.png","prizes/Rare/aa.png","prizes/Rare/ab.png","prizes/Rare/ac.png","prizes/Rare/ad.png","prizes/Rare/ae.png","prizes/Rare/af.png"]
+    "images": ["prizes/Rare/a24.png","prizes/Rare/a25.png","prizes/Rare/a26.png","prizes/Rare/a27.png","prizes/Rare/a28.png","prizes/Rare/a29.png","prizes/Rare/a30.png","prizes/Rare/a31.png"]
   },
   {
     "name": "Common",
     "weight": 45,
     "rarity": "Common",
-    "images": ["prizes/Common/ag.png","prizes/Common/ah.png","prizes/Common/ai.png","prizes/Common/aj.png","prizes/Common/ak.png","prizes/Common/al.png","prizes/Common/am.png","prizes/Common/an.png"]
+    "images": ["prizes/Common/a32.png","prizes/Common/a33.png","prizes/Common/a34.png","prizes/Common/a35.png","prizes/Common/a36.png","prizes/Common/a37.png","prizes/Common/a38.png","prizes/Common/a39.png"]
   }
 ]
