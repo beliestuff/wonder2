@@ -98,6 +98,10 @@ button:hover {
   display: none;
 }
 
+.card-front h2 {
+  display: none;
+}
+
 
 .card-back p {
   margin: 0;
