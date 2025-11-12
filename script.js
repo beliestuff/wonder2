@@ -26,15 +26,16 @@ function weightedRandom(cards) {
   return null;
 }
 
-// Updated rarityClass to match your tiers
+// Updated rarityClass to match current tiers only
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().toLowerCase();
-  if (r.includes("hr")) return "hr";
-  if (r.includes("sir")) return "sir";
-  if (r.includes("ultra")) return "ultra";
-  if (r.includes("rare")) return "rare";
-  if (r.includes("common")) return "common";
+  if (r.includes("sir")) return "sir";     // light purple glow
+  if (r.includes("sfa")) return "sfa";     // blue glow
+  if (r.includes("sur")) return "sur";     // pink glow
+  if (r.includes("ultra")) return "ultra"; // no glow
+  if (r.includes("rare")) return "rare";   // no glow
+  if (r.includes("common")) return "common"; 
   return "common";
 }
 
@@ -47,14 +48,15 @@ async function setup() {
   }
 
   const drawOneBtn = document.getElementById("draw-one");
-  const drawTenBtn = document.getElementById("draw-ten"); // optional button
+  const drawTenBtn = document.getElementById("draw-ten"); 
   const resultsDiv = document.getElementById("results");
 
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
     drawn.forEach((card, i) => {
+      const cardTierClass = rarityClass(card.rarity); // get correct class for glow
       const cardDiv = document.createElement("div");
-      cardDiv.className = `card ${rarityClass(card.rarity)}`;
+      cardDiv.className = `card ${cardTierClass}`;
 
       // Pick a random image from card.images array
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
@@ -82,7 +84,7 @@ async function setup() {
     renderDrawn([c]);
   });
 
-  if (drawTenBtn) { // Optional: draw 10 button
+  if (drawTenBtn) {
     drawTenBtn.addEventListener("click", () => {
       const drawn = [];
       for (let i = 0; i < 10; i++) {
