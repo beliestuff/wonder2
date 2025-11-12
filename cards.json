@@ -1,21 +1,27 @@
 [
   {
-    "name": "HR",
-    "weight": 3,
-    "rarity": "HR",
-    "images": ["prizes/HR/a.png"]
+    "name": "SUR",
+    "weight": 0.5,
+    "rarity": "SUR",
+    "images": ["prizes/SUR/a.png"]
+  },
+  {
+    "name": "SFA",
+    "weight": 7.5,
+    "rarity": "SIR",
+    "images": ["prizes/SFA/a8.png"]
   },
   {
     "name": "SIR",
-    "weight": 10,
-    "rarity": "SIR",
-    "images": ["prizes/SIR/a8.png"]
+    "weight": 15,
+    "rarity": "HR",
+    "images": ["prizes/SIR/a.png"]
   },
   {
     "name": "Ultra Rare",
     "weight": 17,
     "rarity": "Ultra Rare",
-    "images": ["prizes/UltraRare/a16.png"]
+    "images": ["prizes/Ultra/a16.png"]
   },
   {
     "name": "Rare",
@@ -25,7 +31,7 @@
   },
   {
     "name": "Common",
-    "weight": 45,
+    "weight": 35,
     "rarity": "Common",
     "images": ["prizes/Common/a32.png"]
   }
