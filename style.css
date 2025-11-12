@@ -77,12 +77,12 @@ button:hover {
 }
 
 .card-front {
-  background: #333;
+  background: transparent;
 }
 
 .card-back {
   transform: rotateY(180deg);
-  background: #111;
+  background: transparent;
 }
 
 .card-back img {
