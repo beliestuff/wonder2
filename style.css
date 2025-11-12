@@ -85,7 +85,7 @@ button:hover {
 .card.hr::before,
 .card.sir::before,
 .card.ultra::before {
-  content: ".𖥔 ݁ ˖⋆✴︎˚｡⋆";
+  content: "WOAH!!!";
   position: absolute;
   top: 50%;
   left: 50%;
