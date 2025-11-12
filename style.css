@@ -77,7 +77,6 @@ button:hover {
   width: 300px;
   height: 420px;
   perspective: 1000px;
-  position: relative;
 }
 
 .card-inner {
@@ -92,7 +91,6 @@ button:hover {
   transform: rotateY(180deg);
 }
 
-/* Card sides setup */
 .card-front,
 .card-back {
   position: absolute;
@@ -104,30 +102,12 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #2a1f3b;
   border: none;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* FRONT — Pokémon BACK (default visible) */
-.card-front {
-  background: #1e1a2a;
-}
-
-.card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-  content: url('https://cdn.discordapp.com/attachments/1088616807394443295/1438057604353097839/IMG_7750.png?ex=69157f02&is=69142d82&hm=b5a18d31ce818586033ade099fcf238fdf60eee3cdb7889e9d69e6ab9b93b2e8&'); /* Pokémon back */
-}
-
-/* BACK — actual Pokémon card image, shown after flip */
-.card-back {
-  transform: rotateY(180deg);
-  background: #2a1f3b;
-}
-
+.card-front img,
 .card-back img {
   width: 100%;
   height: 100%;
@@ -136,61 +116,39 @@ button:hover {
   display: block;
 }
 
+/* Pokémon card back image */
+.card-back {
+  transform: rotateY(180deg);
+  background: #1e1a2a;
+}
+
+.card-back img {
+  content: url('https://archives.bulbagarden.net/media/upload/3/3f/Pok%C3%A9mon_TCG_cardback.jpg'); /* Replace with your preferred image */
+}
+
 /* Hide text on cards */
 .card h2,
 .card p {
   display: none !important;
 }
 
-/* ===== Soft, smooth rarity glow ===== */
+/* Glow by rarity (subtle now) */
 .card.hr {
-  box-shadow:
-    0 0 60px 20px rgba(255, 173, 173, 0.2),
-    0 0 100px 50px rgba(255, 173, 173, 0.1);
+  box-shadow: 0 0 15px 4px #ffadad88;
 }
 
 .card.sir {
-  box-shadow:
-    0 0 60px 20px rgba(255, 214, 165, 0.2),
-    0 0 100px 50px rgba(255, 214, 165, 0.1);
+  box-shadow: 0 0 14px 3px #ffd6a588;
 }
 
 .card.ultra {
-  box-shadow:
-    0 0 70px 25px rgba(253, 255, 182, 0.25),
-    0 0 120px 60px rgba(253, 255, 182, 0.1);
+  box-shadow: 0 0 15px 5px #fdffb688;
 }
 
 .card.rare {
-  box-shadow:
-    0 0 50px 18px rgba(160, 196, 255, 0.2),
-    0 0 100px 50px rgba(160, 196, 255, 0.08);
+  box-shadow: 0 0 12px 3px #a0c4ff66;
 }
 
 .card.common {
-  box-shadow:
-    0 0 40px 15px rgba(189, 178, 255, 0.2),
-    0 0 90px 45px rgba(189, 178, 255, 0.08);
-}
-
-/* ===== Subtle animated sparkle overlay ===== */
-.card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 80px 80px;
-  animation: sparkleMove 40s linear infinite;
-  opacity: 0.15;
-  border-radius: 20px;
-  pointer-events: none;
-  z-index: 3;
-}
-
-@keyframes sparkleMove {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  box-shadow: 0 0 8px 2px #bdb2ff66;
 }
