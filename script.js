@@ -1,14 +1,16 @@
+// Simple helper to log errors visibly
 function logError(msg, err) {
   console.error("CardDraw:", msg, err || "");
 }
 
+// Load cards.json
 async function loadCards() {
   try {
-    const res = await fetch("./cards.json");
+    const res = await fetch("./cards.json"); // Make sure path is correct
     if (!res.ok) throw new Error(`Failed to fetch cards.json: ${res.status} ${res.statusText}`);
     return await res.json();
   } catch (e) {
-    logError("Could not load cards.json", e);
+    logError("Could not load cards.json — make sure the file exists and path is correct.", e);
     return [];
   }
 }
@@ -24,39 +26,30 @@ function weightedRandom(cards) {
   return null;
 }
 
-// Map rarity to class for glow
+// Updated rarityClass to match your tiers (glow on SIR, SFA, SUR)
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().trim().toLowerCase();
   if (r === "sir") return "sir";
   if (r === "sfa") return "sfa";
   if (r === "sur") return "sur";
-  if (r === "ultra") return "ultra";
-  if (r === "rare") return "rare";
+  if (r.includes("ultra")) return "ultra";
+  if (r.includes("rare")) return "rare";
   return "common";
 }
 
 async function setup() {
   const cards = await loadCards();
   if (!cards.length) {
-    logError("No cards loaded.");
-    document.getElementById("results").innerText = "No cards loaded.";
+    logError("No cards loaded. Check cards.json and the network tab.");
+    document.getElementById("results").innerText = "No cards loaded — open devtools Console/Network for details.";
     return;
   }
 
-  const resultsDiv = document.getElementById("results");
   const drawOneBtn = document.getElementById("draw-one");
-
-  // Create Draw 5 and Draw 10 buttons
-  const drawFiveBtn = document.createElement("button");
-  drawFiveBtn.id = "draw-five";
-  drawFiveBtn.innerText = "Draw 5";
-  drawOneBtn.parentNode.appendChild(drawFiveBtn);
-
-  const drawTenBtn = document.createElement("button");
-  drawTenBtn.id = "draw-ten";
-  drawTenBtn.innerText = "Draw 10";
-  drawOneBtn.parentNode.appendChild(drawTenBtn);
+  const drawFiveBtn = document.getElementById("draw-five");
+  const drawTenBtn = document.getElementById("draw-ten");
+  const resultsDiv = document.getElementById("results");
 
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
@@ -64,7 +57,9 @@ async function setup() {
       const cardDiv = document.createElement("div");
       cardDiv.className = `card ${rarityClass(card.rarity)}`;
 
+      // Pick a random image from card.images array
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
+
       cardDiv.innerHTML = `
         <div class="card-inner">
           <div class="card-front"></div>
@@ -76,6 +71,8 @@ async function setup() {
         </div>
       `;
       resultsDiv.appendChild(cardDiv);
+
+      // flip with stagger
       setTimeout(() => cardDiv.classList.add("flipped"), 200 + i * 180);
     });
   }
@@ -89,11 +86,12 @@ async function setup() {
     renderDrawn(drawn);
   }
 
-  drawOneBtn.addEventListener("click", () => draw(1));
-  drawFiveBtn.addEventListener("click", () => draw(5));
-  drawTenBtn.addEventListener("click", () => draw(10));
+  if (drawOneBtn) drawOneBtn.addEventListener("click", () => draw(1));
+  if (drawFiveBtn) drawFiveBtn.addEventListener("click", () => draw(5));
+  if (drawTenBtn) drawTenBtn.addEventListener("click", () => draw(10));
 
   console.log("Card Draw setup complete. Cards loaded:", cards.length);
 }
 
+// Run setup after DOM content
 setup().catch(e => logError("Setup failed", e));
