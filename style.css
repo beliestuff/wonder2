@@ -89,7 +89,10 @@ button:hover {
   width: 100%;
   height: 160px;
   object-fit: cover;
+  border: none;       /* 🟢 no border */
+  outline: none;      /* 🟢 no outline */
 }
+
 
 .card-back h2 {
   margin: 5px 0 0;
