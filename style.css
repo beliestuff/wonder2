@@ -119,7 +119,7 @@ button:hover {
   object-fit: cover;
   border-radius: 20px;
   display: block;
-  content: url('https://archives.bulbagarden.net/media/upload/3/3f/Pok%C3%A9mon_TCG_cardback.jpg'); /* Pokémon back */
+  content: url('https://cdn.discordapp.com/attachments/1088616807394443295/1438057604353097839/IMG_7750.png?ex=69157f02&is=69142d82&hm=b5a18d31ce818586033ade099fcf238fdf60eee3cdb7889e9d69e6ab9b93b2e8&'); /* Pokémon back */
 }
 
 /* BACK — actual Pokémon card image, shown after flip */
