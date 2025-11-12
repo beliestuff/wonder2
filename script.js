@@ -15,6 +15,7 @@ async function loadCards() {
   }
 }
 
+// Weighted random selection
 function weightedRandom(cards) {
   const totalWeight = cards.reduce((s, c) => s + (c.weight || 0), 0);
   if (totalWeight <= 0) return null;
@@ -26,16 +27,15 @@ function weightedRandom(cards) {
   return null;
 }
 
-// Updated rarityClass to match current tiers only
+// Map card rarity to CSS class
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().toLowerCase();
-  if (r.includes("sir")) return "sir";     // light purple glow
-  if (r.includes("sfa")) return "sfa";     // blue glow
-  if (r.includes("sur")) return "sur";     // pink glow
-  if (r.includes("ultra")) return "ultra"; // no glow
-  if (r.includes("rare")) return "rare";   // no glow
-  if (r.includes("common")) return "common"; 
+  if (r.includes("sir")) return "sir"; // SIR tier glow
+  if (r.includes("sfa")) return "sfa"; // SFA tier glow
+  if (r.includes("sur")) return "sur"; // SUR tier glow
+  if (r.includes("ultra")) return "ultra"; // Ultra Rare no glow
+  if (r.includes("rare")) return "rare"; // Rare no glow
   return "common";
 }
 
@@ -48,15 +48,15 @@ async function setup() {
   }
 
   const drawOneBtn = document.getElementById("draw-one");
-  const drawTenBtn = document.getElementById("draw-ten"); 
+  const drawFiveBtn = document.getElementById("draw-five");
+  const drawTenBtn = document.getElementById("draw-ten");
   const resultsDiv = document.getElementById("results");
 
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
     drawn.forEach((card, i) => {
-      const cardTierClass = rarityClass(card.rarity); // get correct class for glow
       const cardDiv = document.createElement("div");
-      cardDiv.className = `card ${cardTierClass}`;
+      cardDiv.className = `card ${rarityClass(card.rarity)}`;
 
       // Pick a random image from card.images array
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
@@ -73,27 +73,35 @@ async function setup() {
       `;
       resultsDiv.appendChild(cardDiv);
 
-      // flip with stagger
+      // Flip animation with stagger
       setTimeout(() => cardDiv.classList.add("flipped"), 200 + i * 180);
     });
   }
 
+  // Draw buttons
   drawOneBtn.addEventListener("click", () => {
     const c = weightedRandom(cards);
     if (!c) { logError("weightedRandom returned null"); return; }
     renderDrawn([c]);
   });
 
-  if (drawTenBtn) {
-    drawTenBtn.addEventListener("click", () => {
-      const drawn = [];
-      for (let i = 0; i < 10; i++) {
-        const c = weightedRandom(cards);
-        if (c) drawn.push(c);
-      }
-      renderDrawn(drawn);
-    });
-  }
+  drawFiveBtn.addEventListener("click", () => {
+    const drawn = [];
+    for (let i = 0; i < 5; i++) {
+      const c = weightedRandom(cards);
+      if (c) drawn.push(c);
+    }
+    renderDrawn(drawn);
+  });
+
+  drawTenBtn.addEventListener("click", () => {
+    const drawn = [];
+    for (let i = 0; i < 10; i++) {
+      const c = weightedRandom(cards);
+      if (c) drawn.push(c);
+    }
+    renderDrawn(drawn);
+  });
 
   console.log("Card Draw setup complete. Cards loaded:", cards.length);
 }
