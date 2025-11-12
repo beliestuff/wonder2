@@ -1,5 +1,29 @@
-[
-  { "name": "Dragon", "image": "images/dragon.png", "rarity": "Legendary", "weight": 1 },
-  { "name": "Wizard", "image": "images/wizard.png", "rarity": "Rare", "weight": 5 },
-  { "name": "Knight", "image": "images/knight.png", "rarity": "Common", "weight": 20 }
-]
+{
+  "prizes": [
+    {
+      "name": "Prize 1",
+      "chance": 3,
+      "folder": "prizes/prize1"
+    },
+    {
+      "name": "Prize 2",
+      "chance": 10,
+      "folder": "prizes/prize2"
+    },
+    {
+      "name": "Prize 3",
+      "chance": 17,
+      "folder": "prizes/prize3"
+    },
+    {
+      "name": "Prize 4",
+      "chance": 25,
+      "folder": "prizes/prize4"
+    },
+    {
+      "name": "Prize 5",
+      "chance": 45,
+      "folder": "prizes/prize5"
+    }
+  ]
+}
