@@ -49,6 +49,9 @@ button:hover {
   width: 367px;
   height: 512px;
   perspective: 1000px;
+  background: transparent !important;   /* ✅ remove dark background */
+  box-shadow: none !important;          /* ✅ remove any outer dark edge */
+  border: none !important;
 }
 
 .card-inner {
@@ -63,17 +66,22 @@ button:hover {
   transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+/* ✅ cleaned up front/back to remove black backgrounds */
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 0px;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
 }
 
 .card-front {
@@ -85,28 +93,21 @@ button:hover {
   background: transparent;
 }
 
-.card-back img {
+/* ✅ make images fill the card and remove borders */
+.card-back img,
+.card-front img {
   width: 100%;
-  height: 160px;
+  height: 100%;
   object-fit: cover;
-  border: none;       /* 🟢 no border */
-  outline: none;      /* 🟢 no outline */
+  border: none;
+  outline: none;
+  display: block;
 }
 
-
-.card-back h2 {
-  display: none;
-}
-
-.card-front h2 {
-  display: none;
-}
-
-
-.card-back p {
-  margin: 0;
-  font-size: 0.9em;
-  opacity: 0.8;
+/* ✅ hide all text elements inside the card */
+.card h2,
+.card p {
+  display: none !important;
 }
 
 /* ✨ Rarity glows */
