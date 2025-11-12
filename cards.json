@@ -8,13 +8,13 @@
   {
     "name": "SFA",
     "weight": 7.5,
-    "rarity": "SIR",
+    "rarity": "SFA",
     "images": ["prizes/SFA/a8.png"]
   },
   {
     "name": "SIR",
     "weight": 15,
-    "rarity": "HR",
+    "rarity": "SIR",
     "images": ["prizes/SIR/a.png"]
   },
   {
