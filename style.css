@@ -85,7 +85,7 @@ button:hover {
 .card.hr::before,
 .card.sir::before,
 .card.ultra::before {
-  content: ;
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -95,7 +95,7 @@ button:hover {
   text-align: center;
   font-size: 22px;
   line-height: 1.4;
-  pointer-events: none;
+  pointer-events: none; /* prevent glow from blocking clicks */
   animation: sparkleFloat 3.5s ease-in-out infinite;
   color: transparent;
   background: linear-gradient(120deg, #ff8ce7 0%, #b89fff 50%, #ffbdf5 100%);
@@ -141,6 +141,7 @@ button:hover {
   opacity: 0.75;
   animation: pulseGlow 3.5s ease-in-out infinite;
   z-index: 0;
+  pointer-events: none; /* ✅ prevent glow from blocking button clicks */
 }
 
 /* Pink glow (HR) */
