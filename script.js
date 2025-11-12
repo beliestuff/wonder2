@@ -1,21 +1,18 @@
-// Simple helper to log errors visibly
 function logError(msg, err) {
   console.error("CardDraw:", msg, err || "");
 }
 
-// Load cards.json
 async function loadCards() {
   try {
-    const res = await fetch("./cards.json"); // Make sure path is correct
+    const res = await fetch("./cards.json");
     if (!res.ok) throw new Error(`Failed to fetch cards.json: ${res.status} ${res.statusText}`);
     return await res.json();
   } catch (e) {
-    logError("Could not load cards.json — make sure the file exists and path is correct.", e);
+    logError("Could not load cards.json", e);
     return [];
   }
 }
 
-// Weighted random selection
 function weightedRandom(cards) {
   const totalWeight = cards.reduce((s, c) => s + (c.weight || 0), 0);
   if (totalWeight <= 0) return null;
@@ -27,30 +24,39 @@ function weightedRandom(cards) {
   return null;
 }
 
-// Map card rarity to CSS class
+// Map rarity to class for glow
 function rarityClass(rarity) {
   if (!rarity) return "common";
-  const r = rarity.toString().toLowerCase();
-  if (r.includes("sir")) return "sir"; // SIR tier glow
-  if (r.includes("sfa")) return "sfa"; // SFA tier glow
-  if (r.includes("sur")) return "sur"; // SUR tier glow
-  if (r.includes("ultra")) return "ultra"; // Ultra Rare no glow
-  if (r.includes("rare")) return "rare"; // Rare no glow
+  const r = rarity.toString().trim().toLowerCase();
+  if (r === "sir") return "sir";
+  if (r === "sfa") return "sfa";
+  if (r === "sur") return "sur";
+  if (r === "ultra") return "ultra";
+  if (r === "rare") return "rare";
   return "common";
 }
 
 async function setup() {
   const cards = await loadCards();
   if (!cards.length) {
-    logError("No cards loaded. Check cards.json and the network tab.");
-    document.getElementById("results").innerText = "No cards loaded — open devtools Console/Network for details.";
+    logError("No cards loaded.");
+    document.getElementById("results").innerText = "No cards loaded.";
     return;
   }
 
-  const drawOneBtn = document.getElementById("draw-one");
-  const drawFiveBtn = document.getElementById("draw-five");
-  const drawTenBtn = document.getElementById("draw-ten");
   const resultsDiv = document.getElementById("results");
+  const drawOneBtn = document.getElementById("draw-one");
+
+  // Create Draw 5 and Draw 10 buttons
+  const drawFiveBtn = document.createElement("button");
+  drawFiveBtn.id = "draw-five";
+  drawFiveBtn.innerText = "Draw 5";
+  drawOneBtn.parentNode.appendChild(drawFiveBtn);
+
+  const drawTenBtn = document.createElement("button");
+  drawTenBtn.id = "draw-ten";
+  drawTenBtn.innerText = "Draw 10";
+  drawOneBtn.parentNode.appendChild(drawTenBtn);
 
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
@@ -58,9 +64,7 @@ async function setup() {
       const cardDiv = document.createElement("div");
       cardDiv.className = `card ${rarityClass(card.rarity)}`;
 
-      // Pick a random image from card.images array
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
-
       cardDiv.innerHTML = `
         <div class="card-inner">
           <div class="card-front"></div>
@@ -72,39 +76,24 @@ async function setup() {
         </div>
       `;
       resultsDiv.appendChild(cardDiv);
-
-      // Flip animation with stagger
       setTimeout(() => cardDiv.classList.add("flipped"), 200 + i * 180);
     });
   }
 
-  // Draw buttons
-  drawOneBtn.addEventListener("click", () => {
-    const c = weightedRandom(cards);
-    if (!c) { logError("weightedRandom returned null"); return; }
-    renderDrawn([c]);
-  });
-
-  drawFiveBtn.addEventListener("click", () => {
+  function draw(n) {
     const drawn = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < n; i++) {
       const c = weightedRandom(cards);
       if (c) drawn.push(c);
     }
     renderDrawn(drawn);
-  });
+  }
 
-  drawTenBtn.addEventListener("click", () => {
-    const drawn = [];
-    for (let i = 0; i < 10; i++) {
-      const c = weightedRandom(cards);
-      if (c) drawn.push(c);
-    }
-    renderDrawn(drawn);
-  });
+  drawOneBtn.addEventListener("click", () => draw(1));
+  drawFiveBtn.addEventListener("click", () => draw(5));
+  drawTenBtn.addEventListener("click", () => draw(10));
 
   console.log("Card Draw setup complete. Cards loaded:", cards.length);
 }
 
-// Run setup after DOM content
 setup().catch(e => logError("Setup failed", e));
