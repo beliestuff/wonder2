@@ -85,7 +85,7 @@ button:hover {
 .card.hr::before,
 .card.sir::before,
 .card.ultra::before {
-  content: "WOAH!!!";
+  content: ;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -96,7 +96,7 @@ button:hover {
   font-size: 22px;
   line-height: 1.4;
   pointer-events: none;
-  animation: sparkleFloat 3.5s ease-in-out fordwards;
+  animation: sparkleFloat 3.5s ease-in-out ;
   color: transparent;
   background: linear-gradient(120deg, #ff8ce7 0%, #b89fff 50%, #ffbdf5 100%);
   -webkit-background-clip: text;
