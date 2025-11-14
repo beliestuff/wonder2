@@ -13,7 +13,7 @@
   },
   {
     "name": "SIR",
-    "weight": 15,
+    "weight": 100,
     "rarity": "SIR",
     "images": ["prizes/SIR/a4.png","prizes/SIR/a5.png","prizes/SIR/a6.png","prizes/SIR/a7.png","prizes/SIR/a8.png","prizes/SIR/a9.png","prizes/SIR/a10.png"]
   },
