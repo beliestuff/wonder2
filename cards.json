@@ -13,19 +13,19 @@
   },
   {
     "name": "SIR",
-    "weight": 15,
+    "weight": 10,
     "rarity": "SIR",
     "images": ["prizes/SIR/a4.png","prizes/SIR/a5.png","prizes/SIR/a6.png","prizes/SIR/a7.png","prizes/SIR/a8.png","prizes/SIR/a9.png","prizes/SIR/a10.png"]
   },
   {
     "name": "Ultra Rare",
-    "weight": 17,
+    "weight": 20.5,
     "rarity": "Ultra Rare",
     "images": ["prizes/Ultra/a16.png"]
   },
   {
     "name": "Rare",
-    "weight": 25,
+    "weight": 26.5,
     "rarity": "Rare",
     "images": ["prizes/Rare/a24.png"]
   },
