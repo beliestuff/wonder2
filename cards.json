@@ -15,7 +15,7 @@
     "name": "SIR",
     "weight": 15,
     "rarity": "SIR",
-    "images": ["prizes/SIR/a.png"]
+    "images": ["prizes/SIR/a4.jpeg","prizes/SIR/a5.jpeg","prizes/SIR/a6.jpeg","prizes/SIR/a7.jpeg","prizes/SIR/a8.jpeg","prizes/SIR/a9.jpeg","prizes/SIR/a10.jpeg","prizes/SIR/a11.jpeg",]
   },
   {
     "name": "Ultra Rare",
