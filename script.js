@@ -1,23 +1,16 @@
-// Simple helper to log errors visibly
-function logError(msg, err) {
-  console.error("CardDraw:", msg, err || "");
-}
-
-// Load cards.json
 async function loadCards() {
   try {
-    const res = await fetch("./cards.json"); // Make sure path is correct
-    if (!res.ok) throw new Error(`Failed to fetch cards.json: ${res.status} ${res.statusText}`);
+    const res = await fetch("./cards.json");
+    if (!res.ok) throw new Error(`Error cargando cards.json: ${res.status}`);
     return await res.json();
   } catch (e) {
-    logError("Could not load cards.json — make sure the file exists and path is correct.", e);
+    console.error("No se pudo cargar cards.json:", e);
     return [];
   }
 }
 
 function weightedRandom(cards) {
   const totalWeight = cards.reduce((s, c) => s + (c.weight || 0), 0);
-  if (totalWeight <= 0) return null;
   let random = Math.random() * totalWeight;
   for (let card of cards) {
     random -= (card.weight || 0);
@@ -26,7 +19,6 @@ function weightedRandom(cards) {
   return null;
 }
 
-// Updated rarityClass to match your tiers (glow on SIR, SFA, SUR)
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().trim().toLowerCase();
@@ -40,11 +32,7 @@ function rarityClass(rarity) {
 
 async function setup() {
   const cards = await loadCards();
-  if (!cards.length) {
-    logError("No cards loaded. Check cards.json and the network tab.");
-    document.getElementById("results").innerText = "No cards loaded — open devtools Console/Network for details.";
-    return;
-  }
+  if (!cards.length) return;
 
   const drawOneBtn = document.getElementById("draw-one");
   const drawFiveBtn = document.getElementById("draw-five");
@@ -53,11 +41,11 @@ async function setup() {
 
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
-    drawn.forEach((card, i) => {
+
+    // Añadimos todas las cartas primero
+    drawn.forEach(card => {
       const cardDiv = document.createElement("div");
       cardDiv.className = `card ${rarityClass(card.rarity)}`;
-
-      // Pick a random image from card.images array
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
 
       cardDiv.innerHTML = `
@@ -71,36 +59,35 @@ async function setup() {
         </div>
       `;
       resultsDiv.appendChild(cardDiv);
+    });
 
-      // Flip animation with stagger delay
-      setTimeout(() => cardDiv.classList.add("flipped"), 200 + i * 180);
+    // Luego aplicamos la animación de flip con retraso
+    document.querySelectorAll(".card").forEach((card, i) => {
+      setTimeout(() => card.classList.add("flipped"), 200 + i * 180);
     });
   }
 
-  // ⬇️⬇️⬇️ **UPDATED PART — NO DUPES IN 5 OR 10 DRAWS** ⬇️⬇️⬇️
   function draw(n) {
-    const pool = [...cards];  // make a fresh temporary deck
     const drawn = [];
+    const pool = [...cards]; // hacemos copia para no repetir si quieres
 
-    for (let i = 0; i < n && pool.length > 0; i++) {
-      const card = weightedRandom(pool);
-      if (card) drawn.push(card);
-
-      // remove chosen card so it cannot repeat
-      const index = pool.indexOf(card);
-      if (index !== -1) pool.splice(index, 1);
+    for (let i = 0; i < n; i++) {
+      const c = weightedRandom(pool);
+      if (!c) break;
+      drawn.push(c);
+      // opcional: eliminar c del pool si no quieres repetidos
+      // pool.splice(pool.indexOf(c), 1);
     }
 
     renderDrawn(drawn);
+
+    // Scroll automático al final
+    resultsDiv.scrollIntoView({ behavior: "smooth", block: "end" });
   }
-  // ⬆️⬆️⬆️ END UPDATED SECTION ⬆️⬆️⬆️
 
-  if (drawOneBtn) drawOneBtn.addEventListener("click", () => draw(1));
-  if (drawFiveBtn) drawFiveBtn.addEventListener("click", () => draw(5));
-  if (drawTenBtn) drawTenBtn.addEventListener("click", () => draw(10));
-
-  console.log("Card Draw setup complete. Cards loaded:", cards.length);
+  drawOneBtn?.addEventListener("click", () => draw(1));
+  drawFiveBtn?.addEventListener("click", () => draw(5));
+  drawTenBtn?.addEventListener("click", () => draw(10));
 }
 
-// Run setup after DOM content
-setup().catch(e => logError("Setup failed", e));
+setup();
