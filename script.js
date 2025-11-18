@@ -72,19 +72,28 @@ async function setup() {
       `;
       resultsDiv.appendChild(cardDiv);
 
-      // flip with stagger
+      // Flip animation with stagger delay
       setTimeout(() => cardDiv.classList.add("flipped"), 200 + i * 180);
     });
   }
 
+  // ⬇️⬇️⬇️ **UPDATED PART — NO DUPES IN 5 OR 10 DRAWS** ⬇️⬇️⬇️
   function draw(n) {
+    const pool = [...cards];  // make a fresh temporary deck
     const drawn = [];
-    for (let i = 0; i < n; i++) {
-      const c = weightedRandom(cards);
-      if (c) drawn.push(c);
+
+    for (let i = 0; i < n && pool.length > 0; i++) {
+      const card = weightedRandom(pool);
+      if (card) drawn.push(card);
+
+      // remove chosen card so it cannot repeat
+      const index = pool.indexOf(card);
+      if (index !== -1) pool.splice(index, 1);
     }
+
     renderDrawn(drawn);
   }
+  // ⬆️⬆️⬆️ END UPDATED SECTION ⬆️⬆️⬆️
 
   if (drawOneBtn) drawOneBtn.addEventListener("click", () => draw(1));
   if (drawFiveBtn) drawFiveBtn.addEventListener("click", () => draw(5));
