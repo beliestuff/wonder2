@@ -6,15 +6,14 @@ body {
   color: #fff;
   text-align: center;
   min-height: 100vh;
+  margin: 0; /* quitar margen por defecto */
+  overflow-y: auto; /* permite scroll vertical */
   position: relative;
-  overflow-y: auto; /* allow vertical scrolling */
-  margin: 0; /* remove default body margin */
 }
 
-/* Optional: keep full viewport for background sparkle */
 body::before {
   content: '';
-  position: fixed; /* fixed instead of absolute to stay behind content */
+  position: fixed; /* fijo detrás del contenido */
   width: 200%;
   height: 200%;
   background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
@@ -25,7 +24,10 @@ body::before {
   z-index: 0;
 }
 
-@keyframes sparkleBG { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes sparkleBG { 
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
 
 .container {
   position: relative;
@@ -36,7 +38,8 @@ body::before {
   border-radius: 30px;
   box-shadow: 0 0 30px rgba(150, 100, 255, 0.2);
   backdrop-filter: blur(10px);
-  margin: 40px auto; /* center horizontally, allow vertical growth */
+  margin: 40px auto; /* centrado horizontal y margen superior/inferior */
+  display: block; /* crece con contenido */
 }
 
 .buttons {
@@ -67,6 +70,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  width: 100%;
 }
 
 .card {
