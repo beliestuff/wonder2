@@ -25,8 +25,6 @@ function rarityClass(rarity) {
   if (r === "sir") return "sir";
   if (r === "sfa") return "sfa";
   if (r === "sur") return "sur";
-  if (r.includes("ultra")) return "ultra";
-  if (r.includes("rare")) return "rare";
   return "common";
 }
 
@@ -42,7 +40,7 @@ async function setup() {
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
 
-    // Añadimos todas las cartas primero
+    // Añadir todas las cartas primero
     drawn.forEach(card => {
       const cardDiv = document.createElement("div");
       cardDiv.className = `card ${rarityClass(card.rarity)}`;
@@ -53,36 +51,34 @@ async function setup() {
           <div class="card-front"></div>
           <div class="card-back">
             <img src="${randomImage}" alt="${card.name}" />
-            <h2>${card.name}</h2>
-            <p>${card.rarity || ""}</p>
           </div>
         </div>
       `;
       resultsDiv.appendChild(cardDiv);
     });
 
-    // Luego aplicamos la animación de flip con retraso
+    // Aplicar flip con retraso, pero después de que todas estén en el DOM
     document.querySelectorAll(".card").forEach((card, i) => {
       setTimeout(() => card.classList.add("flipped"), 200 + i * 180);
     });
+
+    // Scroll automático al final
+    resultsDiv.scrollIntoView({ behavior: "smooth", block: "end" });
   }
 
   function draw(n) {
     const drawn = [];
-    const pool = [...cards]; // hacemos copia para no repetir si quieres
+    const pool = [...cards]; // copia para evitar modificar la original
 
     for (let i = 0; i < n; i++) {
       const c = weightedRandom(pool);
       if (!c) break;
       drawn.push(c);
-      // opcional: eliminar c del pool si no quieres repetidos
+      // opcional: eliminar c del pool si no quieres repetir cartas en el mismo saque
       // pool.splice(pool.indexOf(c), 1);
     }
 
     renderDrawn(drawn);
-
-    // Scroll automático al final
-    resultsDiv.scrollIntoView({ behavior: "smooth", block: "end" });
   }
 
   drawOneBtn?.addEventListener("click", () => draw(1));
