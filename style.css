@@ -6,9 +6,9 @@ body {
   color: #fff;
   text-align: center;
   min-height: 100vh;
-  margin: 0; /* quitar margen por defecto */
-  overflow-y: auto; /* permite scroll vertical */
   position: relative;
+  overflow-y: auto; /* permite scroll vertical */
+  margin: 0;
 }
 
 body::before {
@@ -38,8 +38,8 @@ body::before {
   border-radius: 30px;
   box-shadow: 0 0 30px rgba(150, 100, 255, 0.2);
   backdrop-filter: blur(10px);
-  margin: 40px auto; /* centrado horizontal y margen superior/inferior */
-  display: block; /* crece con contenido */
+  margin: 40px auto; /* centrado horizontal */
+  display: block;    /* permite crecer con contenido */
 }
 
 .buttons {
@@ -69,6 +69,7 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start; /* asegura que las filas no se corten */
   gap: 20px;
   width: 100%;
 }
